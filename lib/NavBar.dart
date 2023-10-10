@@ -25,10 +25,9 @@ Future<LatLng> _getCurrentLocation() async {
     desiredAccuracy: LocationAccuracy.high,
   );
   LatLng latLng = LatLng(position.latitude, position.longitude);
-  print(LatLng);
+  print(latLng);
   return latLng;
 }
-
 
 List<String> numbers = ["9167645691","9529448553","7738657272",""];
 class _NavBarState extends State<NavBar> {
@@ -48,7 +47,7 @@ class _NavBarState extends State<NavBar> {
      for (number in numbers)
           {
             var latLng =_getCurrentLocation();
-          SmsText='This is An SoS Message';
+          SmsText='This is An SoS Message My Location is $latLng';
           await telephony.sendSms(
             to: number,
             message: SmsText,
