@@ -276,6 +276,7 @@ class _LocationScreenState extends State<LocationScreen> {
           Positioned(
             top: 30,
             child: Container(
+              width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
                 color: Color(0xff37949d).withOpacity(0.6), // Adjust opacity as needed
                 borderRadius: BorderRadius.only(
@@ -287,8 +288,8 @@ class _LocationScreenState extends State<LocationScreen> {
                 // Add border
               ),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox(width: 25),
                   Container(
                     height: 80, // Custom height for the image container
                     width: 80,  // Custom width for the image container
@@ -304,7 +305,7 @@ class _LocationScreenState extends State<LocationScreen> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        "SAFE-ROUTES    ",
+                        "SAFE-ROUTES",
                         style: TextStyle(
                           fontSize: 32,
                           fontWeight: FontWeight.w700,
