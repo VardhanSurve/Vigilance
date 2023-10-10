@@ -14,7 +14,7 @@ class ChatMessages extends StatelessWidget {
           child: Container(
             margin: EdgeInsets.only(right: 16),
             child: CircleAvatar(
-              backgroundColor: sender == "you"?Color(0xFF3498db):Colors.transparent,
+              backgroundColor: sender == "you"?Color(0xFFe7a8b4):Colors.transparent,
               child: sender == "you"?Image.asset("assets/images/user.gif"):Image.asset("assets/images/bot.gif"),
               radius: 20,
             ),
@@ -23,7 +23,7 @@ class ChatMessages extends StatelessWidget {
         Flexible(
             child: Container(
               decoration: BoxDecoration(borderRadius: BorderRadius.circular(15),
-                  color: sender == "you"?Color(0xFF3498db):Color(0xFF2ecc71)),
+                  color: sender == "you"?Color(0xFFe7a8b4):Color(0xFFCCCCCC)),
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(

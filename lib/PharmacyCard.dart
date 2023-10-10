@@ -21,18 +21,18 @@ class PharmacyCard extends StatelessWidget {
                 onMapFunction!('https://www.google.co.in/maps/search/pharmacy+stores+near+me');
               },
               child: Card(
-                elevation: 3,
+                elevation: 6,
                 color: Color(0xffff6b81),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Container(
-                  height: 50,
-                  width: 50,
+                  height: 65,
+                  width: 65,
                   child: Center(
                     child: Image.asset(
                       'assets/images/medical store.png',
-                      height: 40,
+                      height: 50,
                     ),
                   ),
                 ),

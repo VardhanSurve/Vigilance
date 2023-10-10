@@ -83,7 +83,7 @@ class _NavBarState extends State<NavBar> {
       body: _pageOptions[selectedpage],
       bottomNavigationBar: CurvedNavigationBar(
         height: screenWidth * 0.15,
-        buttonBackgroundColor:const Color(0xff96d9e3), // bbgcolor[selectedpage],////const Color(0xFF5BEA43),
+        buttonBackgroundColor:const Color(0xff6CC4C0), // bbgcolor[selectedpage],////const Color(0xFF5BEA43),
         backgroundColor:Colors.transparent,// bgcolor[selectedpage],
         color: const Color(0xff37949d),
         animationCurve: Curves.linearToEaseOut,

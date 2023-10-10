@@ -40,8 +40,13 @@ class _ReportPageState extends State<ReportPage> {
   Future openDialog() => showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        backgroundColor: Color(0xffeca0ac),
-        title: Text("Enter Incident Details"),
+        backgroundColor: Color(0xffeeb9c2),
+        title: Text("Enter Incident Details",
+        style: TextStyle(
+          color: Color(0xff007A78),
+          fontWeight: FontWeight.bold,
+          fontSize: 25
+        ),),
         content: Container(
           child: Column(
             children: [
@@ -57,15 +62,31 @@ class _ReportPageState extends State<ReportPage> {
               ),
               SizedBox(height: 30,),
               MaterialButton(
-                child: Text("Gallery"),
-                color: Colors.red,
+                child: Text(
+                  "Gallery",
+                  style: TextStyle(
+                    color: Colors.white, // Text color in white for better visibility
+                  ),
+                ),
+                color: Colors.teal, // Teal color for the button background
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10), // Rounded corners for a modern look
+                ),
                 onPressed: () {
                   pickImagefromGallery();
                 },
               ),
+
               MaterialButton(
-                  child: Text("Camera"),
-                  color: Colors.blue,
+                  child: Text("Camera",
+                    style: TextStyle(
+                      color: Colors.white, // Text color in white for better visibility
+                    ),
+                  ),
+                  color: Color(0xffff6b81),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10), // Rounded corners for a modern look
+                  ),
                   onPressed: () {
                     pickImagefromCamera();
                   }),
@@ -77,7 +98,11 @@ class _ReportPageState extends State<ReportPage> {
                 selectedImage!,
                 height: 79,
               )
-                  : Text("Select an Image")
+                  : Text("Select an Image",
+              style: TextStyle(
+                color: Color(0xff333333),
+                fontSize: 20,
+              ),)
             ],
           ),
         ),
@@ -87,7 +112,16 @@ class _ReportPageState extends State<ReportPage> {
                 addNotification(incidentName.text, description.text);
                 Navigator.of(context).pop();
               },
-              child: Text("Submit"))
+              child: Text("Submit",
+              style: TextStyle(
+                color: Colors.white
+              ),),
+    style: TextButton.styleFrom(
+  backgroundColor: Colors.pink, // Pink color for the button background
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(10), // Rounded corners for a modern look
+    ),
+  ),)
         ],
       ));
   Future pickImagefromGallery() async {
@@ -120,19 +154,20 @@ class _ReportPageState extends State<ReportPage> {
           Container(
             width: double.infinity,
             height: 900,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/images/download (1).jpeg'), // Path to your image
-                fit: BoxFit.cover,
-              ),
-            ),
+            color: Color(0xffF2F2F2),
+            // decoration: BoxDecoration(
+            //   image: DecorationImage(
+            //     image: AssetImage('assets/images/download (1).jpeg'), // Path to your image
+            //     fit: BoxFit.cover,
+            //   ),
+            // ),
 
             child: Column(
               children: [
                 Align(
                   alignment: Alignment.center,
                     child: Padding(
-                      padding: const EdgeInsets.only(top: 35.0),
+                      padding: const EdgeInsets.only(top: 50.0),
                       child: SizedBox(
                         height: 300,
                         child: ListView(
@@ -177,7 +212,7 @@ class _ReportPageState extends State<ReportPage> {
                 //   ),
                 // ),
 
-                SizedBox(height: 10,),
+                SizedBox(height: 35,),
                 Positioned(
                   top:430,
                   left: 20,
@@ -217,7 +252,7 @@ class _ReportPageState extends State<ReportPage> {
                           style: const TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.bold,
-                            color: Colors.black,
+                            color: Color(0xff333333),
                           ),
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -271,7 +306,7 @@ class _ReportPageState extends State<ReportPage> {
                       ),
                     ),
                   ), ),
-                SizedBox(height: 20,),
+                SizedBox(height: 35,),
                 ListTile(
                   title: Column(
                     children: [
@@ -280,9 +315,10 @@ class _ReportPageState extends State<ReportPage> {
                         style: TextStyle(
                           color:Color(0xff06535b),
                           fontSize: 20,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(width: 16.0,height: 10,),
+                      SizedBox(width: 16.0,height: 7,),
                       Container(
                         width: 370,
                         height: 100,
@@ -298,7 +334,7 @@ class _ReportPageState extends State<ReportPage> {
                           child: Text(
                             ReportNow,
                             style: TextStyle(
-                              color: Colors.black,
+                              color: Color(0xff333333),
                               fontSize: 15,
                             ),
                           ),
@@ -355,10 +391,10 @@ class _ReportPageState extends State<ReportPage> {
                           width: 70,
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: Color(0xff37949d),
+                            color: Color(0xffff6b81),
                           ),
                           child: IconButton(
-                            icon: Icon(Icons.add, color: Colors.grey.shade200),
+                            icon: Icon(Icons.add, color: Colors.grey.shade200,size: 40,),
                             onPressed: () {
                               openDialog();
                             },

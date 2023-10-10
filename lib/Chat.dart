@@ -70,9 +70,9 @@ class _ChatPageState extends State<ChatPage> {
             ),
             Column(
               children: [
-                Container(height: 40,color: Color(0xff67c2cb)),
+                Container(height: 40,color: Color(0xff007A78)),
                 Container(
-                  color:Color(0xff67c2cb),
+                  color:Color(0xff007A78),
                   child: Row(
                     children: [
                       GestureDetector(
@@ -84,11 +84,11 @@ class _ChatPageState extends State<ChatPage> {
                             width: 60,
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              color: Colors.grey.shade200,
+                              color: Color(0xffFF6B81),
                             ),
                             child: IconButton(
                               icon: Icon(Icons.add,
-                                  color: Color(0xff37949d),
+                                  color:Colors.white,// Color(0xff37949d),
                               size: 40,),
                               onPressed: () {
                                 openDialog();
@@ -142,7 +142,8 @@ class _ChatPageState extends State<ChatPage> {
                                         Container(
                                           child: Text(
                                             relations[index],
-                                            style: TextStyle(fontSize: 11),
+                                            style: TextStyle(fontSize: 11,
+                                            color: Colors.white),
                                           ),
                                         )
                                       ],

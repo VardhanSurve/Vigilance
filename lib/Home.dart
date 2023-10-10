@@ -53,14 +53,15 @@ class _HomePageState extends State<HomePage> {
         child: Container(
           height: MediaQuery.of(context).size.height,
           width: 900,
+          color: Color(0xffF2F2F2),
           child:Stack(
           children:[
-             Image.asset(
-              'assets/images/download (1).jpeg',
-               height: MediaQuery.of(context).size.height,
-               width: 900,
-              fit: BoxFit.fill,
-            ),
+            //  Image.asset(
+            //   'assets/images/download (1).jpeg',
+            //    height: MediaQuery.of(context).size.height,
+            //    width: 900,
+            //   fit: BoxFit.fill,
+            // ),
              Stack(
               children: [
                 Positioned(
@@ -71,7 +72,7 @@ class _HomePageState extends State<HomePage> {
                       onPressed: () {
                         Scaffold.of(context).openDrawer();
                       },
-                      icon: Icon(Icons.person, size: screenWidth * 0.11,color: Colors.black,),
+                      icon: Icon(Icons.person, size: screenWidth * 0.11,color: Color(0xffff6b81),),
                     ),
                   ),
                 ),
@@ -97,7 +98,7 @@ class _HomePageState extends State<HomePage> {
                           "SAFE-ROUTES",
                           style: TextStyle(
                             fontSize: 30,
-                            color: Colors.white,
+                            color: Color(0xff007A78),
                             //color: Color(0xff37949d),
                             fontWeight: FontWeight.w700,
                           ),
@@ -124,6 +125,14 @@ class _HomePageState extends State<HomePage> {
                     decoration: BoxDecoration(
                       border: Border.all(color: Colors.black, width: 2.0),
                       borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color(0xFF4E7D7A).withOpacity(0.4), // Desaturated teal with 20% opacity
+                          spreadRadius: 3,
+                          blurRadius: 5,
+                          offset: Offset(0, 3),
+                        )
+                      ],
                     ),
                     margin: EdgeInsets.all(8),
                     child: ClipRRect(
@@ -159,6 +168,14 @@ class _HomePageState extends State<HomePage> {
                               color: Color(0xFF597934),
                               border: Border.all(color: Colors.black, width: 2.0),
                               borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Color(0xFF4E7D7A).withOpacity(0.4), // Desaturated teal with 20% opacity
+                                  spreadRadius: 3,
+                                  blurRadius: 5,
+                                  offset: Offset(0, 3),
+                                )
+                              ],
                             ),
                             margin: EdgeInsets.all(8),
                             child: ClipRRect(
@@ -194,6 +211,14 @@ class _HomePageState extends State<HomePage> {
                               color: Colors.black,
                               border: Border.all(color: Colors.black, width: 2.0),
                               borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Color(0xFF4E7D7A).withOpacity(0.4), // Desaturated teal with 20% opacity
+                                  spreadRadius: 3,
+                                  blurRadius: 5,
+                                  offset: Offset(0, 3),
+                                )
+                              ],
                             ),
                             margin: EdgeInsets.all(8),
                             child: ClipRRect(
@@ -241,7 +266,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                             Expanded(
                               child: Text(
-                                'Safety Tips For Womens',
+                                'Safety Tips ',
                                 style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
@@ -260,7 +285,7 @@ class _HomePageState extends State<HomePage> {
                             style: const TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.bold,
-                              color: Colors.black,
+                              color: Color(0xff333333),
                             ),
                             overflow: TextOverflow.ellipsis,
                           ),
@@ -293,7 +318,8 @@ class _HomePageState extends State<HomePage> {
                         ),
                         dropdownStyleData: DropdownStyleData(
                           maxHeight: 200,
-                          width: 320,
+                          width: 350,
+                          padding: const EdgeInsets.only(left: 14, right: 14),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(14),
                              color: Color(0xffeca0ac),
@@ -350,7 +376,7 @@ class _HomePageState extends State<HomePage> {
                           style: const TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.bold,
-                            color: Colors.black,
+                            color: Color(0xff333333),
                           ),
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -373,7 +399,7 @@ class _HomePageState extends State<HomePage> {
                           // ),
                           color: const Color(0xffff6b81),
                         ),
-                        elevation: 2,
+                        elevation: 6,
                       ),
                       iconStyleData: const IconStyleData(
                         icon: Icon(
@@ -385,7 +411,8 @@ class _HomePageState extends State<HomePage> {
                       ),
                       dropdownStyleData: DropdownStyleData(
                         maxHeight: 200,
-                        width: 320,
+                        width: 350,
+                        padding: const EdgeInsets.only(left: 14, right: 14),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(14),
                           color: Color(0xffeca0ac),
@@ -406,7 +433,7 @@ class _HomePageState extends State<HomePage> {
                 ),
 
                 Positioned(
-                    top: 590,
+                    top: 575,
                     child: LiveSafe()),
 
                 // Container(

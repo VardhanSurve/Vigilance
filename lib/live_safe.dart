@@ -31,18 +31,32 @@ class LiveSafe extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 90,
+      height: 200, // Adjust the height as needed
       width: MediaQuery.of(context).size.width,
       child: ListView(
-        physics: BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,
         children: [
-          PoliceStationCard(onMapFunction: openMap),
-          HospitalCard(onMapFunction: openMap),
-          PharmacyCard(onMapFunction: openMap),
-          BusStationCard(onMapFunction: openMap),
+          SizedBox(width: 60,),
+          Column(
+
+            children: [
+              PoliceStationCard(onMapFunction: openMap),
+              SizedBox(height: 20,),
+              HospitalCard(onMapFunction: openMap),
+            ],
+          ),
+          SizedBox(width: 30,),
+          Column(
+
+            children: [
+              PharmacyCard(onMapFunction: openMap),
+              SizedBox(height: 20,),
+              BusStationCard(onMapFunction: openMap),
+            ],
+          ),
         ],
       ),
     );
   }
+
 }

@@ -111,7 +111,7 @@ class _ChatBotState extends State<ChatBot> {
               padding: const EdgeInsets.only(bottom: 90),
               child: ListTile(
                 trailing: IconButton(icon : const Icon(Icons.send,color: Color(
-                    0xfff199a4),
+                    0xffFF6B81),
                 size: 30,), onPressed: () {
                   if(_messagecontroller.text.isEmpty){
                     print("empty model");
@@ -124,7 +124,7 @@ class _ChatBotState extends State<ChatBot> {
                 title: Container(
                   height: 45,
                   decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),
-                  color: Color(0xffe7a8b4),),
+                  color: Color(0xfff3808e),),
                   padding: const EdgeInsets.only(left: 15),
                   child: TextFormField(
                     onFieldSubmitted: (value)=> _sendMessage(),
