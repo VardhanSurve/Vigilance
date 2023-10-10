@@ -25,9 +25,9 @@ Future<String> _getCurrentLocation() async {
     desiredAccuracy: LocationAccuracy.high,
   );
   LatLng latLng = LatLng(position.latitude, position.longitude);
-  String Lat = position.latitude as String;
-  String Long = position.longitude as String;
-  String Location = "Lat: $Lat,Long: $Long ";
+  double Lat = position.latitude ;
+  double Long = position.longitude ;
+  String Location = "$Lat+$Long";
   return Location;
 }
 
@@ -44,23 +44,26 @@ class _NavBarState extends State<NavBar> {
     ShakeDetector detector = ShakeDetector.autoStart(
       onPhoneShake: () async {
 
+
+        String Location = await _getCurrentLocation();
           Telephony telephony = Telephony.instance;
      var number;
      for (number in numbers)
           {
-            Future<String> Location =_getCurrentLocation();
-          SmsText='This is An SoS Message My Location is $Location';
+
+          SmsText='This is An SoS Message My Location is http://maps.google.com/maps?z=12&t=m&q=loc:$Location';
           await telephony.sendSms(
             to: number,
             message: SmsText,
           );
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('SOS Sent!'),
+            ),
+          );
+          print(SmsText);
         }
-        print(SmsText);
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('SOS Sent!'),
-          ),
-        );
+
         // Do stuff on phone shake
       },
       minimumShakeCount:1,

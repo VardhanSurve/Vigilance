@@ -11,18 +11,103 @@ import 'PharmacyCard.dart';
 import 'PoliceStationCard.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
 class ReportPage extends StatefulWidget {
 
   @override
   _ReportPageState createState() => _ReportPageState();
 }
 class _ReportPageState extends State<ReportPage> {
+  List<String> notifications = [];
+  List<String> descriptionlist = [];
   String ReportNow ="Harassment at Aray road near Goragaon";
   final List<String> items = [
     "https://morth.nic.in/public-grievances",
     "https://sakhi.gov.in/home/resources",
     "https://citizen.mahapolice.gov.in/Citizen/MH/Women.aspx",
   ];
+  void addNotification(String message, String description) {
+    setState(() {
+      notifications.insert(0, message);
+      descriptionlist.insert(0, description);
+      // Add the latest notification at the beginning of the list
+    });
+  }
+  File? selectedImage;
+  TextEditingController incidentName = TextEditingController();
+  TextEditingController description = TextEditingController();
+  Future openDialog() => showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        backgroundColor: Color(0xffeca0ac),
+        title: Text("Enter Incident Details"),
+        content: Container(
+          child: Column(
+            children: [
+              SizedBox(height: 50,),
+              TextField(
+                autofocus: true,
+                controller: incidentName,
+                decoration: InputDecoration(hintText: "Incident Title"),
+              ),
+              TextField(
+                controller: description,
+                decoration: InputDecoration(hintText: "Description"),
+              ),
+              SizedBox(height: 30,),
+              MaterialButton(
+                child: Text("Gallery"),
+                color: Colors.red,
+                onPressed: () {
+                  pickImagefromGallery();
+                },
+              ),
+              MaterialButton(
+                  child: Text("Camera"),
+                  color: Colors.blue,
+                  onPressed: () {
+                    pickImagefromCamera();
+                  }),
+              SizedBox(
+                height: 10,
+              ),
+              selectedImage != null
+                  ? Image.file(
+                selectedImage!,
+                height: 79,
+              )
+                  : Text("Select an Image")
+            ],
+          ),
+        ),
+        actions: [
+          TextButton(
+              onPressed: () {
+                addNotification(incidentName.text, description.text);
+                Navigator.of(context).pop();
+              },
+              child: Text("Submit"))
+        ],
+      ));
+  Future pickImagefromGallery() async {
+    final returnedImage =
+    await ImagePicker().pickImage(source: ImageSource.gallery);
+    // if(returnedImage==null)return;
+    setState(() {
+      selectedImage = File(returnedImage!.path);
+    });
+  }
+
+  Future pickImagefromCamera() async {
+    final returnedImage =
+    await ImagePicker().pickImage(source: ImageSource.camera);
+    // if(returnedImage==null) return;
+    setState(() {
+      selectedImage = File(returnedImage!.path);
+    });
+  }
+
   String? selectedValue;
   @override
   Widget build(BuildContext context) {
@@ -91,10 +176,7 @@ class _ReportPageState extends State<ReportPage> {
                 //     ],
                 //   ),
                 // ),
-                SizedBox(height: 10,),
-                Container(
-                  child: LiveSafe(),
-                ),
+
                 SizedBox(height: 10,),
                 Positioned(
                   top:430,
@@ -116,7 +198,7 @@ class _ReportPageState extends State<ReportPage> {
                           ),
                           Expanded(
                             child: Text(
-                              'Complaint To Government Officals',
+                              'Report To Government Officals',
                               style: TextStyle(
                                 fontSize: 15,
                                 fontWeight: FontWeight.bold,
@@ -258,6 +340,56 @@ class _ReportPageState extends State<ReportPage> {
                       ),
                     ],
                   ),
+                ),
+                SizedBox(height: 30,),
+                Column(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        openDialog();
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          height: 70,
+                          width: 70,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Color(0xff37949d),
+                          ),
+                          child: IconButton(
+                            icon: Icon(Icons.add, color: Colors.grey.shade200),
+                            onPressed: () {
+                              openDialog();
+                            },
+                          ),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      height: 100,
+                      child: ListView.builder(
+                        itemCount: notifications.length,
+                        itemBuilder: (context, index) {
+                          return Container(
+                            height: 60,
+                            width: MediaQuery.of(context).size.width -
+                                40, // Screen width minus 20 on both sides
+                            color: Colors
+                                .white, // Set the white color for the "notification pad"
+                            margin: EdgeInsets.only(
+                                bottom: 10.0), // Add margin between notifications
+                            child: Column(
+                              children: [
+                                Text(notifications[index],style: TextStyle(fontSize: 20),),
+                                Text(descriptionlist[index],style: TextStyle(fontSize: 10))
+                              ],
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ],
                 ),
               ],
 

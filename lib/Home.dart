@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'Report.dart';
 import 'Location.dart';
+import 'live_safe.dart';
 import 'quotes.dart';
 import 'sidebar.dart';
 
@@ -401,7 +402,12 @@ class _HomePageState extends State<HomePage> {
                         padding: EdgeInsets.only(left: 14, right: 14),
                       ),
                     ),
-                  ), ),
+                  ),
+                ),
+
+                Positioned(
+                    top: 590,
+                    child: LiveSafe()),
 
                 // Container(
                     //   height: 100,
