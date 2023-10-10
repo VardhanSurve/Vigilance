@@ -63,8 +63,9 @@ class _HomePageState extends State<HomePage> {
              Stack(
               children: [
                 Positioned(
-                  top: 50.0,
-                  left: 13.0,
+                  top:45,
+                  right: 20,
+
                   child: Builder(
                     builder: (context) => IconButton(
                       onPressed: () {
@@ -75,8 +76,8 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 Positioned(
-                  top:45,
-                  right: 20,
+                  top: 50.0,
+                  left: 13.0,
                     child: Container(
                       height: 70,
                       width: 70,
