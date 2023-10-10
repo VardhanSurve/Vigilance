@@ -18,7 +18,7 @@ class Sidebar extends StatelessWidget {
     return Drawer(
       width: 230,
       child: Container(
-        color: Color(0xffd3e8ef).withOpacity(0.5),
+        color: Color(0xff007A78).withOpacity(0.5),
         // decoration: BoxDecoration(
         //   gradient: LinearGradient(
         //     begin: Alignment.topCenter,
@@ -64,7 +64,7 @@ class Sidebar extends StatelessWidget {
                   borderRadius: BorderRadius.only(
                     bottomRight: Radius.circular(120.0),
                   ),
-                  color: Color(0xff96d9e3).withOpacity(1),
+                  color: Color(0xff4deeec).withOpacity(1),
                 ),
               ),
             ),
@@ -87,10 +87,10 @@ class Sidebar extends StatelessWidget {
             ),
             SizedBox(height: 10),
             ListTile(
-              leading: const Icon(Icons.settings, color: Color(0xff0c3e42),size: 35,), // Change icon color to black
+              leading: const Icon(Icons.settings, size: 35,color: Colors.white,), // Change icon color to black
               title: const Text('Signup',
                 style: TextStyle(
-                    color: Color(0xff0c3e42),
+                    color: Colors.white,
                     fontSize: 18
                 ),),
               onTap: () {
@@ -121,10 +121,10 @@ class Sidebar extends StatelessWidget {
             SizedBox(height: 10),
 
             ListTile(
-              leading: const Icon(Icons.logout, color: Color(0xff0c3e42),size: 35,), // Change icon color to black
+              leading: const Icon(Icons.logout, color: Colors.white,size: 35,), // Change icon color to black
               title: const Text('Logout',
                 style: TextStyle(
-                    color: Color(0xff0c3e42),
+                    color: Colors.white,
                     fontSize: 18
                 ),),
               onTap: () async {

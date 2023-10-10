@@ -59,7 +59,7 @@ class _NewOnBoardingScreenState extends State<NewOnBoardingScreen> {
           showDoneButton: true,
           back: const Icon(Icons.arrow_back,color: Color(0xff30949D)),
           skip: const Text('Skip', style: TextStyle(fontWeight: FontWeight.w600,color: Color(0xff30949D))),
-          next: const Icon(Icons.arrow_forward,color: Color(0xff30949D),size: 35,),
+          next: const Icon(Icons.arrow_forward,color: Color(0xffff6b81),size: 35,),
           done: const Text('Done', style: TextStyle(fontWeight: FontWeight.w600,color: Color(0xff30949D),fontSize: 25)),
           curve: Curves.fastLinearToSlowEaseIn,
           controlsMargin: const EdgeInsets.all(16),

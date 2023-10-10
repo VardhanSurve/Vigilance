@@ -34,29 +34,74 @@ class _ChatPageState extends State<ChatPage> {
     Future openDialog() => showDialog(
         context: context,
         builder: (context) => AlertDialog(
-              title: Text("Enter Contact Details"),
+          backgroundColor: Color(0xffeeb9c2),
+              title: Text("Enter Contact Details",
+                style: TextStyle(
+                  color: Color(0xff007A78),
+            fontWeight: FontWeight.bold,
+            fontSize: 25
+        ),),
               content: Container(
-                height: 100,
+                height: 150,
                 child: Column(
                   children: [
                     TextField(
                       autofocus: true,
                       controller: nameController,
-                      decoration:
-                          InputDecoration(hintText: "Enter Contact Name"),
+                      decoration: InputDecoration(
+                        hintText: "Enter Contact Name",
+                        filled: true,
+                        fillColor: Colors.teal.withOpacity(0.3),
+                        // Teal color with some transparency for a subtle background
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10), // Rounded corners for a modern look
+                          borderSide: BorderSide(
+                            color: Colors.green, // Border color set to teal
+                            width: 2.0, // Border width
+                          ),
+                          // Remove the border to create a clean appearance
+                        ),
+                      ),
                     ),
+                    SizedBox(height: 20,),
                     TextField(
                       controller: numberController,
-                      decoration:
-                          InputDecoration(hintText: "Enter Contact No."),
+                      decoration: InputDecoration(
+                        hintText: "Enter Contact No.",
+                        filled: true,
+                        fillColor: Colors.teal.withOpacity(0.3),
+                        // Teal color with some transparency for a subtle background
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10), // Rounded corners for a modern look
+                          borderSide: BorderSide(
+                            color: Colors.green, // Border color set to teal
+                            width: 2.0, // Border width
+                          ),
+                          // Remove the border to create a clean appearance
+                        ),
+                      ),
                     )
                   ],
                 ),
               ),
-              actions: [TextButton(onPressed: () {
+              actions: [TextButton(
+                  onPressed: () {
                 addItemToList();
                 Navigator.of(context).pop();
-              }, child: Text("Submit"))],
+              },
+                child: Text("Submit",
+                  style: TextStyle(
+                      color: Colors.white
+                  ),
+              ),
+                style: TextButton.styleFrom(
+                  backgroundColor: Color(0xff007A78), // Pink color for the button background
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10), // Rounded corners for a modern look
+                  ),
+                ),
+              ),
+              ],
             ));
     return Scaffold(
         extendBody: true,

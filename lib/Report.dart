@@ -50,46 +50,92 @@ class _ReportPageState extends State<ReportPage> {
         content: Container(
           child: Column(
             children: [
-              SizedBox(height: 50,),
+              SizedBox(height: 30,),
               TextField(
                 autofocus: true,
                 controller: incidentName,
-                decoration: InputDecoration(hintText: "Incident Title"),
-              ),
-              TextField(
-                controller: description,
-                decoration: InputDecoration(hintText: "Description"),
-              ),
-              SizedBox(height: 30,),
-              MaterialButton(
-                child: Text(
-                  "Gallery",
-                  style: TextStyle(
-                    color: Colors.white, // Text color in white for better visibility
+                decoration: InputDecoration(
+                  hintText: "Incident Title",
+                  filled: true,
+                  fillColor: Colors.teal.withOpacity(0.3),
+                  // Teal color with some transparency for a subtle background
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10), // Rounded corners for a modern look
+                    borderSide: BorderSide(
+                      color: Colors.green, // Border color set to teal
+                      width: 2.0, // Border width
+                    ),
+                    // Remove the border to create a clean appearance
                   ),
                 ),
-                color: Colors.teal, // Teal color for the button background
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10), // Rounded corners for a modern look
-                ),
+              ),
+              SizedBox(height: 10,),
+              TextField(
+                controller: description,
+                decoration: InputDecoration(hintText: "Description",filled: true,
+                  fillColor: Colors.teal.withOpacity(0.3), // Teal color with some transparency for a subtle background
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10), // Rounded corners for a modern look
+                    borderSide: BorderSide(
+                      color: Colors.green, // Border color set to teal
+                      width: 2.0, // Border width
+                    ), // Remove the border to create a clean appearance
+                  ),),
+              ),
+              SizedBox(height: 20,),
+              MaterialButton(
                 onPressed: () {
                   pickImagefromGallery();
                 },
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(
+                      Icons.photo, // Example icon (you can replace with the desired icon)
+                      color: Colors.white, // Icon color in white
+                    ),
+                    SizedBox(width: 8), // Add some spacing between the icon and text
+                    Text(
+                      "Gallery",
+                      style: TextStyle(
+                        color: Colors.white, // Text color in white for better visibility
+                      ),
+                    ),
+                  ],
+                ),
+                color: Color(0xff4db2af), // Teal color for the button background
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10), // Rounded corners for a modern look
+                ),
               ),
 
+
               MaterialButton(
-                  child: Text("Camera",
-                    style: TextStyle(
-                      color: Colors.white, // Text color in white for better visibility
+                onPressed: () {
+                  pickImagefromCamera();
+                },
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(
+                      Icons.camera_alt, // Example camera icon (you can replace with the desired camera icon)
+                      color: Colors.white, // Icon color in white
                     ),
-                  ),
-                  color: Color(0xffff6b81),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10), // Rounded corners for a modern look
-                  ),
-                  onPressed: () {
-                    pickImagefromCamera();
-                  }),
+                    SizedBox(width: 8), // Add some spacing between the icon and text
+                    Text(
+                      "Camera",
+                      style: TextStyle(
+                        color: Colors.white, // Text color in white for better visibility
+                      ),
+                    ),
+                  ],
+                ),
+                color: Color(0xFFFF6B81),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+
               SizedBox(
                 height: 10,
               ),
@@ -98,8 +144,9 @@ class _ReportPageState extends State<ReportPage> {
                 selectedImage!,
                 height: 79,
               )
-                  : Text("Select an Image",
+                  : Text("Select an Image ",
               style: TextStyle(
+                fontStyle: FontStyle.italic,
                 color: Color(0xff333333),
                 fontSize: 20,
               ),)
@@ -117,7 +164,7 @@ class _ReportPageState extends State<ReportPage> {
                 color: Colors.white
               ),),
     style: TextButton.styleFrom(
-  backgroundColor: Colors.pink, // Pink color for the button background
+  backgroundColor: Color(0xff007A78), // Pink color for the button background
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(10), // Rounded corners for a modern look
     ),
