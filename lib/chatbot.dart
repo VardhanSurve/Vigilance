@@ -71,11 +71,10 @@ class _ChatBotState extends State<ChatBot> {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child:
-      Container(
+      child: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/back22.jpg'), // Replace with your image path
+            image: AssetImage('assets/images/download.jpeg'), // Replace with your image path
             fit: BoxFit.cover,
           ),
         ),
@@ -90,7 +89,8 @@ class _ChatBotState extends State<ChatBot> {
                   "Today,${DateFormat("Hm").format(DateTime.now())}",
                   style: const TextStyle(
                       fontSize: 16,
-                      fontWeight: FontWeight.w600),
+                      fontWeight: FontWeight.w600,
+                  color: Colors.white),
                 ),
               ),
             ),
@@ -108,7 +108,7 @@ class _ChatBotState extends State<ChatBot> {
                 )
             ),
             Container(
-              padding: const EdgeInsets.only(bottom: 25),
+              padding: const EdgeInsets.only(bottom: 90),
               child: ListTile(
                 trailing: IconButton(icon : const Icon(Icons.send,color: Color(
                     0xfff199a4),

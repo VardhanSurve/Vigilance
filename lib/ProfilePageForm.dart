@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
-
+import 'dart:ui';
 import 'NavBar.dart';
 
 class ProfilePageForm extends StatefulWidget {
@@ -37,17 +37,22 @@ class _ProfilePageFormState extends State<ProfilePageForm> {
           child: Stack(
             children: [
               // Background Image
-              Image.asset(
-                'assets/images/pink2.jpg',
-                width: double.infinity,
-                height: double.infinity,
-                fit: BoxFit.cover,
+              Container(
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(sigmaX: 30.0, sigmaY: 30.0), // Adjust sigmaX and sigmaY for desired blur intensity
+                  child: Image.asset(
+                    'assets/images/pink2.jpg',
+                    width: double.infinity,
+                    height: double.infinity,
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ),
               // Container with Semi-Transparent Color
               Container(
                 width: double.infinity,
                 height: double.infinity,
-                color: Colors.black.withOpacity(0.2),
+                color: Colors.black.withOpacity(0.25),
               ),
               // Form Content
               Stack(
@@ -179,7 +184,7 @@ class _ProfilePageFormState extends State<ProfilePageForm> {
                                     ),
                                     prefixIcon: Padding(
                                       padding: const EdgeInsets.only(left: 10.0, right: 4.0),
-                                      child: Icon(Icons.phone, color: Color(0xff37949d), size: 35),
+                                      child: Icon(Icons.cake, color: Color(0xff37949d), size: 35),
                                     ),
                                     labelStyle: TextStyle(
                                       color: Color(0xFF383330),
@@ -270,7 +275,7 @@ class _ProfilePageFormState extends State<ProfilePageForm> {
                                 ),
                               ),
                               SizedBox(height: 70),
-                              Text('Emergency Contacts:', style: TextStyle(color: Color(0xff37949d), fontWeight: FontWeight.bold, fontSize: 20)),
+                              Text('Emergency Contacts:', style: TextStyle(color: Color(0xff37949d), fontWeight: FontWeight.bold, fontSize: 25)),
                               SizedBox(height: 30),
                               Column(
                                 children: [
@@ -297,7 +302,7 @@ class _ProfilePageFormState extends State<ProfilePageForm> {
                                         ),
                                         prefixIcon: Padding(
                                           padding: const EdgeInsets.only(left: 10.0, right: 4.0),
-                                          child: Icon(Icons.cake, color: Color(0xff37949d), size: 35),
+                                          child: Icon(Icons.person, color: Color(0xff37949d), size: 35),
                                         ),
                                         labelStyle: TextStyle(
                                           color: Color(0xFF383330),
@@ -332,7 +337,7 @@ class _ProfilePageFormState extends State<ProfilePageForm> {
                                         ),
                                         prefixIcon: Padding(
                                           padding: const EdgeInsets.only(left: 10.0, right: 4.0),
-                                          child: Icon(Icons.cake, color: Color(0xff37949d), size: 35),
+                                          child: Icon(Icons.phone, color: Color(0xff37949d), size: 35),
                                         ),
                                         labelStyle: TextStyle(
                                           color: Color(0xFF383330),

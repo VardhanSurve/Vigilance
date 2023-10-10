@@ -59,95 +59,103 @@ class _ChatPageState extends State<ChatPage> {
               }, child: Text("Submit"))],
             ));
     return Scaffold(
-        backgroundColor: Colors.white,
+        extendBody: true,
+       //backgroundColor:Color(0xff37949d),
         body: Stack(
           children: [
-            SafeArea(
-              child: Column(
-                children: [
-                  Container(
-                    child: Row(
-                      children: [
-                        GestureDetector(
-                          onTap: () {},
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              height: 70,
-                              width: 70,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Color(0xff37949d),
-                              ),
-                              child: IconButton(
-                                icon: Icon(Icons.add,
-                                    color: Colors.grey.shade200),
-                                onPressed: () {
-                                  openDialog();
-                                },
-                              ),
+            Image.asset(
+              'assets/images/download.jpeg',
+              height: double.infinity,
+              fit: BoxFit.fill,
+            ),
+            Column(
+              children: [
+                Container(height: 50,color: Color(0xff67c2cb)),
+                Container(
+                  color:Color(0xff67c2cb),
+                  child: Row(
+                    children: [
+                      GestureDetector(
+                        onTap: () {},
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Container(
+                            height: 60,
+                            width: 60,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.grey.shade200,
+                            ),
+                            child: IconButton(
+                              icon: Icon(Icons.add,
+                                  color: Color(0xff37949d),
+                              size: 40,),
+                              onPressed: () {
+                                openDialog();
+                              },
                             ),
                           ),
                         ),
-                        Container(
-                          height: 100,
-                          child: VerticalDivider(
-                            width: 15,
-                            thickness: 1,
-                          ),
+                      ),
+                      Container(
+                        height: 100,
+                        child: VerticalDivider(
+                          color: Colors.white,
+                          width: 15,
+                          thickness: 1,
                         ),
-                        Expanded(
-                          child: Container(
-                              padding: EdgeInsets.all(0),
-                              height: 100,
-                              child: ListView.builder(
-                                  padding: EdgeInsets.all(15),
-                                  scrollDirection: Axis.horizontal,
-                                  itemCount: relations.length,
-                                  itemBuilder: (context, index) {
-                                    return GestureDetector(
-                                      onTap: () => _callNumber(contacts[index]),
-                                      child: Column(
-                                        children: [
-                                          Container(
-                                            height: 54,
-                                            width: 75,
-                                            decoration: BoxDecoration(
-                                              color: Colors.lightBlue,
-                                              shape: BoxShape.circle,
-                                              image: DecorationImage(
-                                                  image: AssetImage(
-                                                      "assets/images/avatar.png")),
-                                            ),
-                                            child: Align(
-                                              alignment: Alignment.bottomRight,
-                                              child: Container(
-                                                decoration: BoxDecoration(),
-                                                child: Icon(
-                                                  Icons.call,
-                                                  color: Colors.green,
-                                                ),
+                      ),
+                      Expanded(
+                        child: Container(
+                            padding: EdgeInsets.all(0),
+                            height: 100,
+                            child: ListView.builder(
+                                padding: EdgeInsets.all(15),
+                                scrollDirection: Axis.horizontal,
+                                itemCount: relations.length,
+                                itemBuilder: (context, index) {
+                                  return GestureDetector(
+                                    onTap: () => _callNumber(contacts[index]),
+                                    child: Column(
+                                      children: [
+                                        Container(
+                                          height: 54,
+                                          width: 75,
+                                          decoration: BoxDecoration(
+                                            color: Colors.lightBlue,
+                                            shape: BoxShape.circle,
+                                            image: DecorationImage(
+                                                image: AssetImage(
+                                                    "assets/images/avatar.png")),
+                                          ),
+                                          child: Align(
+                                            alignment: Alignment.bottomRight,
+                                            child: Container(
+                                              decoration: BoxDecoration(),
+                                              child: Icon(
+                                                Icons.call,
+                                                color: Colors.green,
                                               ),
                                             ),
                                           ),
-                                          Container(
-                                            child: Text(
-                                              relations[index],
-                                              style: TextStyle(fontSize: 11),
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    );
-                                    ;
-                                  })),
-                        ),
-                      ],
-                    ),
+                                        ),
+                                        Container(
+                                          child: Text(
+                                            relations[index],
+                                            style: TextStyle(fontSize: 11),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  );
+                                  ;
+                                })),
+                      ),
+                    ],
                   ),
-                  ChatBot()
-                ],
-              ),
+                ),
+                ChatBot()
+              ],
             ),
           ],
         ));
