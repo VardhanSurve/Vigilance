@@ -50,13 +50,13 @@ class _HomePageState extends State<HomePage> {
       drawer: Sidebar(),
       body: SingleChildScrollView(
         child: Container(
-          height: 850,
+          height: MediaQuery.of(context).size.height,
           width: 900,
           child:Stack(
           children:[
              Image.asset(
               'assets/images/download (1).jpeg',
-               height: 1350,
+               height: MediaQuery.of(context).size.height,
                width: 900,
               fit: BoxFit.fill,
             ),
@@ -65,7 +65,6 @@ class _HomePageState extends State<HomePage> {
                 Positioned(
                   top:45,
                   right: 20,
-
                   child: Builder(
                     builder: (context) => IconButton(
                       onPressed: () {
