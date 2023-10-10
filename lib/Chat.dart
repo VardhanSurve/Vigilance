@@ -70,7 +70,7 @@ class _ChatPageState extends State<ChatPage> {
             ),
             Column(
               children: [
-                Container(height: 50,color: Color(0xff67c2cb)),
+                Container(height: 40,color: Color(0xff67c2cb)),
                 Container(
                   color:Color(0xff67c2cb),
                   child: Row(

@@ -20,13 +20,15 @@ class NavBar extends StatefulWidget {
   @override
   _NavBarState createState() => _NavBarState();
 }
-Future<LatLng> _getCurrentLocation() async {
+Future<String> _getCurrentLocation() async {
   Position position = await Geolocator.getCurrentPosition(
     desiredAccuracy: LocationAccuracy.high,
   );
   LatLng latLng = LatLng(position.latitude, position.longitude);
-  print(latLng);
-  return latLng;
+  String Lat = position.latitude as String;
+  String Long = position.longitude as String;
+  String Location = "Lat: $Lat,Long: $Long ";
+  return Location;
 }
 
 List<String> numbers = ["9167645691","9529448553","7738657272",""];
@@ -46,8 +48,8 @@ class _NavBarState extends State<NavBar> {
      var number;
      for (number in numbers)
           {
-            var latLng =_getCurrentLocation();
-          SmsText='This is An SoS Message My Location is $latLng';
+            Future<String> Location =_getCurrentLocation();
+          SmsText='This is An SoS Message My Location is $Location';
           await telephony.sendSms(
             to: number,
             message: SmsText,

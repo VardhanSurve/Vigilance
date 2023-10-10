@@ -62,14 +62,14 @@ class Sidebar extends StatelessWidget {
                 ),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
-                    bottomRight: Radius.circular(30.0),
+                    bottomRight: Radius.circular(120.0),
                   ),
                   color: Color(0xff96d9e3).withOpacity(1),
                 ),
               ),
             ),
 
-            SizedBox(height: 10),
+            SizedBox(height: 20),
             ListTile(
               leading: const Icon(Icons.contact_page, color: Color(0xff0c3e42),size: 35,), // Change icon color to black
               title: const Text('Profile Form',

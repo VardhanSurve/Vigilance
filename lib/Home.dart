@@ -90,7 +90,7 @@ class _HomePageState extends State<HomePage> {
                 ),
                   Positioned(
                       top: 60,
-                      left: 70,
+                      left: 100,
                       child: Container(
                         child: Text(
                           "SAFE-ROUTES",
