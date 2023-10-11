@@ -1,4 +1,5 @@
 
+import 'package:basic/OnboardingSCreen/OnBoardingScreen.dart';
 import 'package:basic/signup_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
@@ -44,7 +45,7 @@ class SidebarApp extends StatelessWidget {
     return MaterialApp(
        initialRoute: '/intro', // Set the initial route
        routes: {
-         '/intro': (context) => NewOnBoardingScreen(),
+         '/intro': (context) => OnboardingScreen(),
           // Welcome screen as the initial route
           // Define your login page
          '/Signup': (context) => SignupScreen(), // Define your signup page

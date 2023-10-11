@@ -72,84 +72,121 @@ class _ChatBotState extends State<ChatBot> {
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/images/download.jpeg'), // Replace with your image path
-            fit: BoxFit.cover,
+          height: 660,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/images/download.jpeg'), // Replace with your image path
+              fit: BoxFit.cover,
+            ),
           ),
-        ),
-        width: MediaQuery.of(context).size.width,
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Align(
-                alignment: Alignment.topCenter,
-                child: Text(
-                  "Today,${DateFormat("Hm").format(DateTime.now())}",
-                  style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                  color: Colors.white),
-                ),
-              ),
-            ),
-            Flexible(
-                 child:ListView.builder(
-                   reverse: true,
-                  padding: EdgeInsets.all(8),
-                  itemCount: _messages.length,
-                  itemBuilder: (context,index){
-                  return Padding(
-                    padding: EdgeInsets.all(16),
-                    child: _messages[index]
-                  );
-                }
-                )
-            ),
-            Container(
-              padding: const EdgeInsets.only(bottom: 90),
-              child: ListTile(
-                trailing: IconButton(icon : const Icon(Icons.send,color: Color(
-                    0xffFF6B81),
-                size: 30,), onPressed: () {
-                  if(_messagecontroller.text.isEmpty){
-                    print("empty model");
-                  }
-                  else{
-                    _sendMessage();
-
-                  }
-                },),
-                title: Container(
-                  height: 45,
-                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),
-                  color: Color(0xfff3808e),),
-                  padding: const EdgeInsets.only(left: 15),
-                  child: TextFormField(
-                    onFieldSubmitted: (value)=> _sendMessage(),
-                    controller: _messagecontroller,
-                    decoration: InputDecoration(
-                      hintText: "Enter a Message",
-                      hintStyle: TextStyle(
-                        color: Colors.black,
-                      ),
-                      border: InputBorder.none,
-                        focusedBorder: InputBorder.none,
-                        enabledBorder: InputBorder.none,
-                        errorBorder: InputBorder.none,
-                      disabledBorder: InputBorder.none
-                    ),
-                    style: const TextStyle(fontSize: 16, color: Colors.black),
+          width: MediaQuery.of(context).size.width,
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Align(
+                  alignment: Alignment.topCenter,
+                  child: Text(
+                    "Today,${DateFormat("Hm").format(DateTime.now())}",
+                    style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                    color: Colors.white),
                   ),
                 ),
               ),
-            )
-          ],
+              Flexible(
+                   child:ListView.builder(
+                     reverse: true,
+                    padding: EdgeInsets.all(8),
+                    itemCount: _messages.length,
+                    itemBuilder: (context,index){
+                    return Padding(
+                      padding: EdgeInsets.all(16),
+                      child: _messages[index]
+                    );
+                  }
+                  )
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      flex: 32,
+                      child: ClipRRect(
+                          borderRadius: BorderRadius.circular(50),
+                          child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(50),
+                                color: Color(0xff333333).withOpacity(0.3)
+                              ),
+                              child: TextField(
+                                autocorrect: true,
+                                controller: _messagecontroller,
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                                decoration: InputDecoration(
+                                  filled: true,
+                                  fillColor: Colors.transparent, // Important for backdrop filter
+                                  contentPadding: EdgeInsets.symmetric(vertical: 18, horizontal: 20),
+                                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(50)),
+                                  hintText: 'How can I help you....',
+                                ),
+                              ),
+                            ),
+                        ),
+                    ),
+                    SizedBox(width: 10),
+                    // Container(
+                    //   padding: const EdgeInsets.only(bottom: 20),
+                    //   child: ListTile(
+                    //     trailing: IconButton(icon : const Icon(Icons.send,color: Color(
+                    //         0xffFF6B81),
+                    //       size: 30,), onPressed: () {
+                    //       if(_messagecontroller.text.isEmpty){
+                    //         print("empty model");
+                    //       }
+                    //       else{
+                    //         _sendMessage();
+                    //
+                    //       }
+                    //     },),
+                    //   ),
+                    // ),
+                    GestureDetector(
+                      onTap: () {
+                        if(_messagecontroller.text.isEmpty){
+                          print("empty model");
+                        }
+                        else{
+                          _sendMessage();
+                        }
+                      },
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(100),
+                        child: CircleAvatar(
+                            radius: 30,
+                            backgroundColor:Color(0xffFF6B81),
+                            child: Icon(
+                                Icons.send,
+                                color: Colors.white,
+                                size: 32,
+                              ),
+                            ),
+                          ),
+                      ),
+                  ],
+                ),
+              ),
+SizedBox(height: 60,),
+            ],
+          ),
         ),
-      ),
-
     );
+
   }
 }
 

@@ -34,7 +34,7 @@ class _ChatPageState extends State<ChatPage> {
     Future openDialog() => showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          backgroundColor: Color(0xffeeb9c2),
+          backgroundColor: Colors.grey,
               title: Text("Enter Contact Details",
                 style: TextStyle(
                   color: Color(0xff007A78),

@@ -288,14 +288,13 @@ class _LoginPageState extends State<LoginPage> {
                                 },
                                 style: ElevatedButton.styleFrom(
                                   padding: EdgeInsets.symmetric(horizontal: 90.0, vertical: 18.0), // Adjust padding for consistency
-                                  primary: Color(0XFF795548),
-                                  onPrimary: Color(0xFFFEFAE0),
+                                  backgroundColor: Color(0XFF795548),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(17.0),
                                     side: BorderSide(color: Colors.black),
                                   ),
                                 ),
-                                child: Text(""),
+                                child: Text("",style: TextStyle(color: Color(0xFFFEFAE0)),),
                               ),
                             ),
                           ],

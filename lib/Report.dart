@@ -2,6 +2,7 @@ import 'package:basic/BusStationCard.dart';
 import 'package:basic/HospitalCard.dart';
 import 'package:basic/live_safe.dart';
 import 'package:basic/policeemergency.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:telephony/telephony.dart';
 import 'AmbulanceEmergency.dart';
@@ -37,6 +38,7 @@ class _ReportPageState extends State<ReportPage> {
   File? selectedImage;
   TextEditingController incidentName = TextEditingController();
   TextEditingController description = TextEditingController();
+  TextEditingController reportNow = TextEditingController();
   Future openDialog() => showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -83,66 +85,93 @@ class _ReportPageState extends State<ReportPage> {
                   ),),
               ),
               SizedBox(height: 20,),
-              MaterialButton(
-                onPressed: () {
-                  pickImagefromGallery();
-                },
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(
-                      Icons.photo, // Example icon (you can replace with the desired icon)
-                      color: Colors.white, // Icon color in white
+              Row(
+                children: [
+                  MaterialButton(
+                    onPressed: () {
+                      pickImagefromGallery();
+                    },
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(
+                          Icons.photo, // Example icon (you can replace with the desired icon)
+                          color: Colors.white, // Icon color in white
+                        ),
+                        SizedBox(width: 8), // Add some spacing between the icon and text
+                        Text(
+                          "Gallery",
+                          style: TextStyle(
+                            color: Colors.white, // Text color in white for better visibility
+                          ),
+                        ),
+                      ],
                     ),
-                    SizedBox(width: 8), // Add some spacing between the icon and text
-                    Text(
-                      "Gallery",
-                      style: TextStyle(
-                        color: Colors.white, // Text color in white for better visibility
-                      ),
+                    color: Color(0xff4db2af), // Teal color for the button background
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10), // Rounded corners for a modern look
                     ),
-                  ],
-                ),
-                color: Color(0xff4db2af), // Teal color for the button background
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10), // Rounded corners for a modern look
-                ),
+                  ),
+                  SizedBox(width: 10,),
+                  MaterialButton(
+                    onPressed: () {
+                      pickImagefromCamera();
+                    },
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(
+                          Icons.camera_alt, // Example camera icon (you can replace with the desired camera icon)
+                          color: Colors.white, // Icon color in white
+                        ),
+                        SizedBox(width: 8), // Add some spacing between the icon and text
+                        Text(
+                          "Camera",
+                          style: TextStyle(
+                            color: Colors.white, // Text color in white for better visibility
+                          ),
+                        ),
+                      ],
+                    ),
+                    color: Color(0xFFFF6B81),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                ],
               ),
 
 
-              MaterialButton(
-                onPressed: () {
-                  pickImagefromCamera();
-                },
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(
-                      Icons.camera_alt, // Example camera icon (you can replace with the desired camera icon)
-                      color: Colors.white, // Icon color in white
-                    ),
-                    SizedBox(width: 8), // Add some spacing between the icon and text
-                    Text(
-                      "Camera",
-                      style: TextStyle(
-                        color: Colors.white, // Text color in white for better visibility
-                      ),
-                    ),
-                  ],
-                ),
-                color: Color(0xFFFF6B81),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
+
 
               SizedBox(
                 height: 10,
               ),
               selectedImage != null
-                  ? Image.file(
-                selectedImage!,
-                height: 79,
+                  ? Container(
+                decoration: BoxDecoration(
+                  color: Colors.green.withOpacity(0.3),
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: Colors.green, width: 2.0),
+                ),
+                padding: EdgeInsets.all(10),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(
+                      Icons.check_circle,
+                      color: Colors.green,
+                    ),
+                    SizedBox(width: 8),
+                    Text(
+                      "Image Selected",
+                      style: TextStyle(
+                        color: Color(0xff333333),
+                        fontSize: 20,
+                      ),
+                    ),
+                  ],
+                ),
               )
                   : Text("Select an Image ",
               style: TextStyle(
@@ -159,10 +188,13 @@ class _ReportPageState extends State<ReportPage> {
                 addNotification(incidentName.text, description.text);
                 Navigator.of(context).pop();
               },
-              child: Text("Submit",
-              style: TextStyle(
-                color: Colors.white
-              ),),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text("Submit",
+                style: TextStyle(
+                  color: Colors.white
+                ),),
+              ),
     style: TextButton.styleFrom(
   backgroundColor: Color(0xff007A78), // Pink color for the button background
     shape: RoundedRectangleBorder(
@@ -353,7 +385,7 @@ class _ReportPageState extends State<ReportPage> {
                       ),
                     ),
                   ), ),
-                SizedBox(height: 35,),
+                SizedBox(height: 15,),
                 ListTile(
                   title: Column(
                     children: [
@@ -366,37 +398,78 @@ class _ReportPageState extends State<ReportPage> {
                         ),
                       ),
                       SizedBox(width: 16.0,height: 7,),
-                      Container(
-                        width: 370,
-                        height: 100,
-                        decoration: BoxDecoration(
-                          color: Color(0xffb2e9f1),
-                          border: Border.all(
-                            color: Color(0xff06535b),
-                            width: 2.0,
+                      // Container(
+                      //   width: 370,
+                      //   height: 100,
+                      //   decoration: BoxDecoration(
+                      //     color: Color(0xffb2e9f1),
+                      //     border: Border.all(
+                      //       color: Color(0xff06535b),
+                      //       width: 2.0,
+                      //     ),
+                      //     borderRadius: BorderRadius.circular(10),
+                      //   ),
+                      //   child: Center(
+                      //     child: Text(
+                      //       reportNow.text,
+                      //       style: TextStyle(
+                      //         color: Color(0xff333333),
+                      //         fontSize: 15,
+                      //       ),
+                      //     ),
+                      //   ),
+                      // ),
+                      TextField(
+                        controller: reportNow,
+                        maxLines: 4,
+                        decoration: InputDecoration(
+                          hintText: 'Describe your emergency...',
+                          hintStyle: TextStyle(
+                            color: Colors.grey,
+                            fontStyle: FontStyle.italic,
                           ),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Center(
-                          child: Text(
-                            ReportNow,
-                            style: TextStyle(
-                              color: Color(0xff333333),
-                              fontSize: 15,
+                          labelText: 'Emergency Report',
+                          labelStyle: TextStyle(
+                            color: Colors.red,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            borderSide: BorderSide(
+                              color: Colors.red,
+                              width: 2
+                            )
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.grey,
+                              width: 1
                             ),
+                            borderRadius: BorderRadius.circular(20)
                           ),
+                          contentPadding: EdgeInsets.all(20),
                         ),
+                        style: TextStyle(
+                          fontSize: 16
+                        ),
+                        keyboardType: TextInputType.multiline,
+                        textInputAction: TextInputAction.newline,
                       ),
-                      SizedBox(height: 5,),
+                      SizedBox(height: 10,),
                       SizedBox(
-                        width: 90,
+                        width: 150,
+                        height: 50,
                         child: ElevatedButton(
                           onPressed: () async {
                             Telephony telephony = Telephony.instance;
+                            reportNow.clear();
 
                             await telephony.sendSms(
                               to:"9167645691", //"8424820665",
-                              message: ReportNow,
+                              message: reportNow.text,
                             );
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(
@@ -412,7 +485,7 @@ class _ReportPageState extends State<ReportPage> {
                             ),
                           ),
                           style: ElevatedButton.styleFrom(
-                            primary: Color(0xff37949d), // Updated color to pink
+                            backgroundColor: Color(0xff37949d), // Updated color to pink
                             elevation: 5,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10), // Rounded corners
@@ -424,7 +497,7 @@ class _ReportPageState extends State<ReportPage> {
                     ],
                   ),
                 ),
-                SizedBox(height: 30,),
+                SizedBox(height: 10,),
                 Column(
                   children: [
                     GestureDetector(

@@ -52,16 +52,9 @@ class _HomePageState extends State<HomePage> {
       body: SingleChildScrollView(
         child: Container(
           height: MediaQuery.of(context).size.height,
-          width: 900,
           color: Color(0xffF2F2F2),
           child:Stack(
           children:[
-            //  Image.asset(
-            //   'assets/images/download (1).jpeg',
-            //    height: MediaQuery.of(context).size.height,
-            //    width: 900,
-            //   fit: BoxFit.fill,
-            // ),
              Stack(
               children: [
                 Positioned(
@@ -248,7 +241,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 Positioned(
-                    top:430,
+                    top:400,
                     left: 20,
                     right: 20,
                     child:DropdownButtonHideUnderline(
@@ -339,7 +332,7 @@ class _HomePageState extends State<HomePage> {
                     ), ),
 
                 Positioned(
-                  top:500,
+                  top:470,
                   left: 20,
                   right: 20,
                   child:DropdownButtonHideUnderline(
@@ -433,7 +426,7 @@ class _HomePageState extends State<HomePage> {
                 ),
 
                 Positioned(
-                    top: 575,
+                    top: 535,
                     child: LiveSafe()),
 
                 // Container(

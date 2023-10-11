@@ -35,8 +35,8 @@ class ForgetPasswordBtnWidget extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(title, style: Theme.of(context).textTheme.headline6),
-                Text(subTitle, style: Theme.of(context).textTheme.bodyText2),
+                Text(title, style: TextStyle(fontSize: 25,fontWeight:FontWeight.w600)),
+                Text(subTitle, style: TextStyle(fontSize: 15)),
               ],
             ),
           ],
@@ -152,8 +152,8 @@ class ForgetPasswordBottomSheet extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("ForgetPassword", style: Theme.of(context).textTheme.headline2),
-          Text("ForgetPasswordSub", style: Theme.of(context).textTheme.bodyText2),
+          Text("ForgetPassword", style:TextStyle(fontSize: 15)),
+          Text("ForgetPasswordSub", style:TextStyle(fontSize: 15)),
           const SizedBox(height: 30.0),
           GestureDetector(
             onTap: () {
@@ -178,8 +178,8 @@ class ForgetPasswordBottomSheet extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Email", style: Theme.of(context).textTheme.headline6),
-                      Text("Reset Email", style: Theme.of(context).textTheme.bodyText2),
+                      Text("Email", style:TextStyle(fontSize: 25)),
+                      Text("Reset Email", style:TextStyle(fontSize: 15)),
                     ],
                   ),
                 ],

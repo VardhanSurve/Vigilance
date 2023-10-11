@@ -28,13 +28,13 @@ class BusStationCard extends StatelessWidget {
                 child: Center(
                   child: Image.asset(
                     'assets/images/buss-removebg-preview.png',
-                    height: 50,
+                    height: 40,
                   ),
                 ),
               ),
             ),
           ),
-          Text('Bus Stations')
+          Text('Bus')
         ],
       ),
     );

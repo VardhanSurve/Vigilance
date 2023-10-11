@@ -1,3 +1,4 @@
+import 'package:basic/HomePage/HomePage.dart';
 import 'package:basic/Notification.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -34,7 +35,7 @@ Future<String> _getCurrentLocation() async {
 List<String> numbers = ["9167645691","9529448553","7738657272",""];
 class _NavBarState extends State<NavBar> {
   int selectedpage = 0;
-  final _pageOptions = [HomePage(),ChatPage(),LocationScreen(),ReportPage(),NotificationPage()];
+  final _pageOptions = [HomePages(),ChatPage(),LocationScreen(),ReportPage(),];
   late String SmsText;
   @override
   void initState() {
@@ -105,11 +106,6 @@ class _NavBarState extends State<NavBar> {
           ),
           Icon(
             Icons.report,
-            size: screenWidth * 0.09,
-            color: Colors.black,
-          ),
-          Icon(
-            Icons.edit_notifications_rounded,
             size: screenWidth * 0.09,
             color: Colors.black,
           ),

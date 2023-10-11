@@ -32,7 +32,7 @@ class ChatMessages extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(left: 1.0),
                       child: Text(
-                        sender,style: Theme.of(context).textTheme.subtitle2,),
+                        sender,style: TextStyle(fontSize: 10)),
                     ),
                     Container(
                       padding: EdgeInsets.only(left: 10.0),
