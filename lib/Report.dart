@@ -353,7 +353,7 @@ class _ReportPageState extends State<ReportPage> {
                       ),
                     ),
                   ), ),
-                SizedBox(height: 35,),
+                SizedBox(height: 15,),
                 ListTile(
                   title: Column(
                     children: [
@@ -387,7 +387,7 @@ class _ReportPageState extends State<ReportPage> {
                           ),
                         ),
                       ),
-                      SizedBox(height: 5,),
+                      SizedBox(height: 2,),
                       SizedBox(
                         width: 90,
                         child: ElevatedButton(
@@ -424,7 +424,7 @@ class _ReportPageState extends State<ReportPage> {
                     ],
                   ),
                 ),
-                SizedBox(height: 30,),
+                SizedBox(height: 10,),
                 Column(
                   children: [
                     GestureDetector(

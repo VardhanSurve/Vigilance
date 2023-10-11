@@ -248,7 +248,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 Positioned(
-                    top:430,
+                    top:400,
                     left: 20,
                     right: 20,
                     child:DropdownButtonHideUnderline(
@@ -339,7 +339,7 @@ class _HomePageState extends State<HomePage> {
                     ), ),
 
                 Positioned(
-                  top:500,
+                  top:470,
                   left: 20,
                   right: 20,
                   child:DropdownButtonHideUnderline(
@@ -433,7 +433,7 @@ class _HomePageState extends State<HomePage> {
                 ),
 
                 Positioned(
-                    top: 575,
+                    top: 535,
                     child: LiveSafe()),
 
                 // Container(
