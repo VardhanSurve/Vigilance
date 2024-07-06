@@ -1,4 +1,3 @@
-
 import 'package:basic/OnboardingSCreen/OnBoardingScreen.dart';
 import 'package:basic/signup_screen.dart';
 import 'package:firebase_core/firebase_core.dart';

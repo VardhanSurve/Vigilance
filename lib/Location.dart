@@ -6,7 +6,6 @@ import 'package:flutter/services.dart' show rootBundle;
 import 'package:csv/csv.dart';
 import 'package:http/http.dart' as http;
 import 'package:telephony/telephony.dart';
-import 'pop.dart';
 import 'dart:async';
 import 'notification_manager.dart';
 
@@ -23,7 +22,8 @@ class LocationData {
   final double longitude;
   final double distance; // Add this property
   final double crimeRate; // Add this property
-  final int cctvCameras; // Add this property
+  final int cctvCameras;
+  final int prediction;// Add this property
 
   LocationData({
     required this.name,
@@ -31,10 +31,13 @@ class LocationData {
     required this.longitude,
     required this.distance,
     required this.crimeRate,
-    required this.cctvCameras, // Add this property
+    required this.cctvCameras,
+    required this.prediction// Add this property
   });
 }
+
 String popupMessage = " ";
+
 class LocationScreen extends StatefulWidget {
   @override
   _LocationScreenState createState() => _LocationScreenState();
@@ -49,8 +52,8 @@ class _LocationScreenState extends State<LocationScreen> {
     target: LatLng(19.174472, 72.866),
     zoom: 15,
   );
-  int _selectedListIndex = 0;
 
+  int _selectedListIndex = 0;
   bool _isLocationMenuOpen = false;
   bool _isOverlayOpen = false;
   bool _isSidebarOpen = false;
@@ -70,7 +73,7 @@ class _LocationScreenState extends State<LocationScreen> {
     }
   }
 
-  Future<void>  _loadLocations() async {
+  Future<void> _loadLocations() async {
     final String data = await rootBundle.loadString('assets/data.csv');
     List<List<dynamic>> csvTable = const CsvToListConverter().convert(data);
     csvTable.removeAt(0);
@@ -83,6 +86,7 @@ class _LocationScreenState extends State<LocationScreen> {
         distance: double.parse(row[5].toString()), // Assuming it's in the 6th column
         crimeRate: double.parse(row[6].toString()), // Assuming it's in the 7th column
         cctvCameras: int.parse(row[7].toString()),
+        prediction: int.parse(row[8].toString()),
       );
     }).toList();
 
@@ -92,27 +96,6 @@ class _LocationScreenState extends State<LocationScreen> {
     }
   }
 
-
-  Future<void> _showMyDialog(BuildContext context) async {
-    return showDialog<void>(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Window Title'),
-
-          content: Text("hello "),
-          actions: <Widget>[
-            TextButton(
-              child: Text('Close'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
   Future<void> _getCurrentLocation() async {
     Position position = await Geolocator.getCurrentPosition(
       desiredAccuracy: LocationAccuracy.high,
@@ -152,43 +135,36 @@ class _LocationScreenState extends State<LocationScreen> {
     });
   }
 
-
   Future<void> _openPopUpWindow(int selectedIndex) async {
-
     print("object");
-
-
-
-
-
-
 
     // Check if the selected index is within valid range
     if (selectedIndex >= 0 && selectedIndex < _locations.length) {
       double distance = _locations[selectedIndex].distance;
       double crimeRate = _locations[selectedIndex].crimeRate;
       int cctvCameras = _locations[selectedIndex].cctvCameras;
+      int Prediction = _locations[selectedIndex].prediction;
       print(selectedIndex);
       print(distance);
       print(crimeRate);
       print(cctvCameras);
+      print(Prediction);
       // Make your API call with these values and handle the response
-      final String popupMessage = await _makeApiCall(distance, crimeRate, cctvCameras);
+      //final String popupMessage = await _makeApiCall(distance, crimeRate, cctvCameras);
+      final int popupMessage = Prediction;
 
       // Show the dialog with the received popup message
-      _showPopupDialog(context, popupMessage);
+      _showPopupDialog(context, _locations[selectedIndex]);
     } else {
       // Handle invalid index
-      _showPopupDialog(context, 'Invalid index');
+      _showPopupDialog(context, null);
     }
-
-
   }
 
   Future<String> _makeApiCall(double distance, double crimeRate, int cctvCameras) async {
     try {
       final response = await http.post(
-        Uri.parse('http://192.168.43.141:8000/predict'),
+        Uri.parse('http://127.0.0.1:5000/predict'),
         headers: {"Content-Type": "application/json"},
         body: jsonEncode({
           "Distance": distance,
@@ -208,15 +184,44 @@ class _LocationScreenState extends State<LocationScreen> {
     }
   }
 
-  void _showPopupDialog(BuildContext context, String message) {
-    NotificationManager.addNotification(message);
-    print("added noti");
+  void _showPopupDialog(BuildContext context, LocationData? location) {
+    // NotificationManager.addNotification(location.prediction.toString());
+    String result;
+
+// Assuming prediction is your list or variable containing prediction values
+    if (location!.prediction == 0) {
+      result = "NEUTRAL";
+    } else if (location.prediction == 1) {
+      result = "SAFE";
+    } else if (location.prediction == 2) {
+      result = "UNSAFE ROUTE";
+    } else {
+      result = "error"; // Handle any other cases if needed
+    }
+
+    String message = result ?? 'error'; // Ensure message has a fallback value if result is null
+
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Popup Window'),
-          content: Text(message),
+          title: const Text('Location Information'),
+          content: location != null
+              ? Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('Name: ${location.name}'),
+              Text('Distance: ${location.distance} km'),
+              Text('Crime Rate: ${location.crimeRate}'),
+              Text('CCTV Cameras: ${location.cctvCameras}'),
+
+
+              SizedBox(height: 10),
+              Text('Prediction: $message'),
+            ],
+          )
+              : Text("message"),
           actions: [
             TextButton(
               onPressed: () {
@@ -229,7 +234,6 @@ class _LocationScreenState extends State<LocationScreen> {
       },
     );
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -244,11 +248,11 @@ class _LocationScreenState extends State<LocationScreen> {
             markers: _markers,
           ),
           Positioned(
-            bottom:90,
+            bottom: 90,
             left: 15,
             child: FloatingActionButton(
               onPressed: () async {
-                _openPopUpWindow(_selectedListIndex);
+                await _openPopUpWindow(_selectedListIndex);
               },
               child: Icon(Icons.add_alert_sharp),
             ),
@@ -292,7 +296,7 @@ class _LocationScreenState extends State<LocationScreen> {
                 children: [
                   Container(
                     height: 80, // Custom height for the image container
-                    width: 80,  // Custom width for the image container
+                    width: 80, // Custom width for the image container
                     decoration: BoxDecoration(
                       image: DecorationImage(
                         image: AssetImage("assets/images/logo.png"),
@@ -318,7 +322,6 @@ class _LocationScreenState extends State<LocationScreen> {
               ),
             ),
           )
-
         ],
       ),
       floatingActionButton: Column(
@@ -334,36 +337,33 @@ class _LocationScreenState extends State<LocationScreen> {
           const SizedBox(height: 75),
         ],
       ),
-
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       bottomSheet: _isLocationMenuOpen
           ? Container(
-              height: MediaQuery.of(context).size.height / 3,
-              color: Colors.white,
-              child: Column(
-                children: [
-                  const SizedBox(height: 16),
-                  Expanded(
-                    child:
-                       ListView.builder(
-                      itemCount: _locations.length,
-                      itemBuilder: (context, index) {
-                        return ListTile(
-                          title: Text(_locations[index].name),
-                          onTap: () {
-                            _selectedListIndex = index;
-                            _onLocationSelected(_locations[index]);
-                            _toggleLocationMenu();
-                          },
-                        );
-                      },
-                    ),
-                  ),
-                ],
+        height: MediaQuery.of(context).size.height / 3,
+        color: Colors.white,
+        child: Column(
+          children: [
+            const SizedBox(height: 16),
+            Expanded(
+              child: ListView.builder(
+                itemCount: _locations.length,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    title: Text(_locations[index].name),
+                    onTap: () {
+                      _selectedListIndex = index;
+                      _onLocationSelected(_locations[index]);
+                      _toggleLocationMenu();
+                    },
+                  );
+                },
               ),
-            )
+            ),
+          ],
+        ),
+      )
           : null,
     );
   }
-
 }

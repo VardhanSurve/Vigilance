@@ -81,11 +81,11 @@ class HomePages extends StatelessWidget {
                         children: [
                           SizedBox(height: 10,),
                          Text(
-                            "Lady Gaga",
+                            "Shobha Verma",
                             style: TextStyle(fontSize: 22, fontWeight: FontWeight.w700,color: Colors.white),
                           ),
                          Text(
-                            "gaga@gmail.com",
+                            "shobha231@gmail.com",
                             style: TextStyle(fontWeight: FontWeight.w400,color: Colors.white),
                           ),
                         ],

@@ -77,6 +77,7 @@ class ProfilePagee extends StatelessWidget {
             ),
 
             Container(
+              height: 700,
               decoration: BoxDecoration(
                   color: Colors.grey.shade400,
                   borderRadius: BorderRadius.only(topRight: Radius.circular(30),topLeft: Radius.circular(30))
