@@ -28,12 +28,19 @@ class CustomElevatedButton extends StatelessWidget {
           colors: [color1, color2],
           tileMode: TileMode.mirror,// Your gradient colors
         ),
+        boxShadow: [
+          BoxShadow(
+            color: Color(0xff8babec),
+            blurRadius: 6.0,
+            offset: Offset(0, 3),
+          ),
+        ],
         borderRadius: BorderRadius.circular(30),
       ),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           padding: EdgeInsets.symmetric(horizontal: padh, vertical: padv),
-          elevation: 4,
+          elevation: 0,
           backgroundColor: Colors.transparent, // Make button transparent
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
         ),

@@ -32,50 +32,55 @@ Future<String> _getCurrentLocation() async {
   return Location;
 }
 
-List<String> numbers = ["9167645691","9529448553","7738657272",""];
+List<String> numbers = ["9167645691","9529448553","7738657272","8600646080"];
 class _NavBarState extends State<NavBar> {
   int selectedpage = 0;
-  final _pageOptions = [HomePages(),ChatPage(),LocationScreen(),ReportPage(),];
+  final _pageOptions = [HomePages(), ChatPage(), LocationScreen(), ReportPage()];
   late String SmsText;
+
   @override
   void initState() {
     super.initState();
 
-
     ShakeDetector detector = ShakeDetector.autoStart(
       onPhoneShake: () async {
-
-
-        String Location = await _getCurrentLocation();
+        try {
+          String location = await _getCurrentLocation();
           Telephony telephony = Telephony.instance;
-     var number;
-     for (number in numbers)
-          {
 
-          SmsText='This is An SoS Message My Location is http://maps.google.com/maps?z=12&t=m&q=loc:$Location';
-          await telephony.sendSms(
-            to: number,
-            message: SmsText,
-          );
+          for (String number in numbers) {
+            SmsText = 'This is An SoS Message My Location is http://maps.google.com/maps?z=12&t=m&q=loc:$location';
+            await telephony.sendSms(
+              to: number,
+              message: SmsText,
+            );
+
+            // Show success SnackBar
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text('SOS Sent to $number!'),
+                backgroundColor: Colors.green,
+              ),
+            );
+          }
+        } catch (e) {
+          // Show error SnackBar
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('SOS Sent!'),
+            SnackBar(
+              content: Text('Failed to send SOS message!'),
+              backgroundColor: Colors.red,
             ),
           );
-          print(SmsText);
+          print('Error sending SMS: $e');
         }
-
-        // Do stuff on phone shake
       },
-      minimumShakeCount:1,
+      minimumShakeCount: 1,
       shakeSlopTimeMS: 500,
       shakeCountResetTime: 15000,
       shakeThresholdGravity: 6,
     );
-
-    // To close: detector.stopListening();
-    // ShakeDetector.waitForStart() waits for user to call detector.startListening();
   }
+
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -84,84 +89,38 @@ class _NavBarState extends State<NavBar> {
       body: _pageOptions[selectedpage],
       bottomNavigationBar: CurvedNavigationBar(
         height: screenWidth * 0.15,
-        buttonBackgroundColor:const Color(0xff6CC4C0), // bbgcolor[selectedpage],////const Color(0xFF5BEA43),
-        backgroundColor:Colors.transparent,// bgcolor[selectedpage],
-        color: const Color(0xff37949d),
+        buttonBackgroundColor: Color(0xff1F3B73),
+        backgroundColor: Colors.transparent,
+        color: const Color(0xff1F3B73),
         animationCurve: Curves.linearToEaseOut,
         items: <Widget>[
           Icon(
             Icons.home,
             size: screenWidth * 0.09,
-            color: Colors.black,
+            color: Color(0xffFFB996),
           ),
           Icon(
             Icons.chat,
             size: screenWidth * 0.09,
-            color: Colors.black,
+            color: Color(0xffFFB996),
           ),
           Icon(
             Icons.location_on,
             size: screenWidth * 0.09,
-            color: Colors.black,
+            color: Color(0xffFFB996),
           ),
           Icon(
             Icons.report,
             size: screenWidth * 0.09,
-            color: Colors.black,
+            color: Color(0xffFFB996),
           ),
         ],
         onTap: (index) {
           setState(() {
-            selectedpage = index; // changing selected page as per bar index selected by the user
+            selectedpage = index;
           });
         },
       ),
-      // _pageOptions[selectedpage],bottomNavigationBar:
-
-
-    // SafeArea(
-    //   child: FloatingNavigationBar(
-    //   backgroundColor: Color(0xff30949D),
-    //   barHeight: 80.0,
-    //   barWidth: MediaQuery.of(context).size.width - 40.0,
-    //   iconColor: Colors.black,
-    //   textStyle: TextStyle(
-    //     color: Colors.white,
-    //     fontSize: 16.0,
-    //   ),
-    //   iconSize: 25.0,
-    //   indicatorColor: Colors.white,
-    //   indicatorHeight: 5,
-    //   indicatorWidth: 25.0,
-    //   items: [
-    //
-    //     NavBarItems(
-    //       icon: Icons.chat_bubble_outlined,
-    //       title: "Chat",
-    //     ),
-    //     NavBarItems(
-    //       // icon: EvaIcons.homeOutline,
-    //       icon: Icons.my_location,
-    //       title: "Maps",
-    //     ),
-    //     NavBarItems(
-    //       icon: Icons.report_gmailerrorred,
-    //       title: "Report",
-    //     ),
-    //
-    //     // NavBarItems(
-    //     //   icon: Icons.my_location,
-    //     //   title: "maps",
-    //     // ),
-    //   ]
-    //   ,
-    //     onChanged: (value) {
-    //       selectedpage = value;
-    //       setState(() {});
-    //     },
-    //   ),
-    // ),
-      // Add the Sidebar her
     );
   }
 }

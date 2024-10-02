@@ -8,20 +8,75 @@ import 'package:url_launcher/url_launcher.dart';
 
 class HomePages extends StatelessWidget {
   const HomePages({super.key});
+// Function to build category cards
+  Widget _buildCategoryCard(String title,Color bgcolor, Color color, String iconPath) {
+    return Container(
+      margin: EdgeInsets.only(right: 10, top: 10, bottom: 9),
+      padding: EdgeInsets.all(15),
+      width: 120,
+      decoration: BoxDecoration(
+        color: color,
+        borderRadius: BorderRadius.circular(15),
+        boxShadow: [
+          BoxShadow(
+            color: Color(0xffF76A6A).withOpacity(0.5),
+            blurRadius: 6,
+            offset: Offset(0, 3),
+          ),
+        ],
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              Container(
+                width: 80,
+                height: 80,
+                decoration: BoxDecoration(
+                  color: color.withOpacity(0.7),
+                  shape: BoxShape.circle,
+                ),
+              ),
+              Container(
+                width: 70,
+                height: 70,
+                decoration: BoxDecoration(
+                  color: bgcolor.withOpacity(0.5),
+                  shape: BoxShape.circle,
+                ),
+              ),
+              Image.asset(iconPath, height: 70, width: 70),
+            ],
+          ),
+          SizedBox(height: 10),
+          Text(
+            title,
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+          ),
+        ],
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading:false,
-        title: Text("AROGYA",style: TextStyle(fontSize: 25,fontWeight: FontWeight.w700),),
+      backgroundColor:Color(0xffF5F5F5) ,
 
-      ),
+      // appBar: AppBar(
+      //   automaticallyImplyLeading:false,
+      //   centerTitle: true,
+      //   title: Text("VIGILANCE",style: TextStyle(fontSize: 25,fontWeight: FontWeight.w700),),
+      //
+      // ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 0,),
+            SizedBox(height: 50,),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
               child: GestureDetector(
@@ -41,12 +96,12 @@ class HomePages extends StatelessWidget {
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
                       colors: [
-                        Color(0xfff6b4bb), // Light pink
-                        Color(0xff37949d), // Dark teal
-                        Color(0xff37949d), // Dark teal
-                        Color(0xff37949d), // Dark teal
-                        Color(0xff37949d), // Dark teal
-                        Color(0xff37949d), // Dark teal
+                        Color(0xffFFB996), // Light pink
+                        Color(0xfffdc2a4), // Dark teal
+                        Color(0xfffdd0b7), // Dark teal
+                        Color(0xffffddcd), // Dark teal
+                        Color(0xffffe8dc), // Dark teal
+                        Color(0xffffe9df), // Dark teal
                       ], // Gradient from https://learnui.design/tools/gradient-generator.html
                       tileMode: TileMode.mirror,
                     ),
@@ -82,11 +137,11 @@ class HomePages extends StatelessWidget {
                           SizedBox(height: 10,),
                          Text(
                             "Shobha Verma",
-                            style: TextStyle(fontSize: 22, fontWeight: FontWeight.w700,color: Colors.white),
+                            style: TextStyle(fontSize: 22, fontWeight: FontWeight.w700,color: Color(0xff2D2D2D)),
                           ),
                          Text(
                             "shobha231@gmail.com",
-                            style: TextStyle(fontWeight: FontWeight.w400,color: Colors.white),
+                            style: TextStyle(fontWeight: FontWeight.w400,color: Color(0xff2D2D2D)),
                           ),
                         ],
                       ),
@@ -108,7 +163,7 @@ class HomePages extends StatelessWidget {
             Column(
               children: [
                 Container(
-                  height: 250,
+                  height: 200,
                   child: ListView(
                     scrollDirection: Axis.horizontal,
                     children: [
@@ -118,15 +173,13 @@ class HomePages extends StatelessWidget {
                           launch('https://www.nationalgeographic.com/travel/article/should-women-travel-solo-india-tips');
                         },
                         child: Container(
-                          width: 330, // Set this width to match the width of your image
+                          width: 330,
                           decoration: BoxDecoration(
-                            border: Border.all(color: Colors.black, width: 2.0),
                             borderRadius: BorderRadius.all(Radius.circular(22.0)),
                             boxShadow: [
                               BoxShadow(
-                                color: Color(0xFF4E7D7A).withOpacity(0.4), // Desaturated teal with 20% opacity
-                                spreadRadius: 3,
-                                blurRadius: 5,
+                                color: Color(0xFF4E7D7A).withOpacity(0.6),
+                                blurRadius: 6,
                                 offset: Offset(0, 3),
                               )
                             ],
@@ -136,18 +189,23 @@ class HomePages extends StatelessWidget {
                             borderRadius: BorderRadius.circular(20.0),
                             child: Stack(
                               children: [
-                                Image.asset('assets/images/NYC subway.jpeg', width: 330, fit: BoxFit.cover),
+                                Image.asset('assets/images/back.jpg', width: 330, fit: BoxFit.cover),
                                 Positioned(
-                                  bottom: 8.0,
+                                  top: 78.0,
                                   left: 8.0,
                                   child: Text(
                                     'Road Safety Articles',
                                     style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: 16.0,
+                                      fontSize: 20.0,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
+                                ),
+                                Positioned(
+                                  right: 8.0,
+                                  bottom: 8.0,
+                                  child: Image.asset('assets/images/09824ced6749eb491058ae4d8f9c37ba-removebg-preview.png', width: 150, height: 150),
                                 ),
                               ],
                             ),
@@ -156,20 +214,18 @@ class HomePages extends StatelessWidget {
                       ),
                       GestureDetector(
                         onTap: () {
-                          // Open link for the first image
+                          // Open link for the second image
                           launch('https://seniority.in/blog/post/womens-safety-self-defense-tips-and-why-is-it-important');
                         },
                         child: Container(
                           width: 330,
                           decoration: BoxDecoration(
                             color: Color(0xFF597934),
-                            border: Border.all(color: Colors.black, width: 2.0),
                             borderRadius: BorderRadius.all(Radius.circular(20.0)),
                             boxShadow: [
                               BoxShadow(
-                                color: Color(0xFF4E7D7A).withOpacity(0.4), // Desaturated teal with 20% opacity
-                                spreadRadius: 3,
-                                blurRadius: 5,
+                                color: Color(0xFF4E7D7A).withOpacity(0.6),
+                                blurRadius: 6,
                                 offset: Offset(0, 3),
                               )
                             ],
@@ -179,18 +235,23 @@ class HomePages extends StatelessWidget {
                             borderRadius: BorderRadius.circular(20.0),
                             child: Stack(
                               children: [
-                                Image.asset('assets/images/sd1.jpg',width: 330, fit: BoxFit.fill),
+                                Image.asset('assets/images/back.jpg', width: 330, fit: BoxFit.fill),
                                 Positioned(
-                                  bottom: 8.0,
+                                  top: 58.0,
                                   left: 8.0,
                                   child: Text(
-                                    'Self Defence Techniques',
+                                    'Self Defence \n Techniques',
                                     style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: 16.0,
+                                      fontSize: 20.0,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
+                                ),
+                                Positioned(
+                                  right: 8.0,
+                                  bottom: 8.0,
+                                  child: Image.asset('assets/images/9bb4f8aadda67a3a811808bc7fbafa5a-removebg-preview.png', width: 150, height: 150),
                                 ),
                               ],
                             ),
@@ -199,20 +260,18 @@ class HomePages extends StatelessWidget {
                       ),
                       GestureDetector(
                         onTap: () {
-                          // Open link for the first image
+                          // Open link for the third image
                           launch('https://www.realsimple.com/health/preventative-health/safety/4-essential-self-defense-moves-everyone-should-know');
                         },
                         child: Container(
                           width: 330,
                           decoration: BoxDecoration(
                             color: Colors.black,
-                            border: Border.all(color: Colors.black, width: 2.0),
                             borderRadius: BorderRadius.all(Radius.circular(20.0)),
                             boxShadow: [
                               BoxShadow(
-                                color: Color(0xFF4E7D7A).withOpacity(0.4), // Desaturated teal with 20% opacity
-                                spreadRadius: 3,
-                                blurRadius: 5,
+                                color: Color(0xFF4E7D7A).withOpacity(0.6),
+                                blurRadius: 6,
                                 offset: Offset(0, 3),
                               )
                             ],
@@ -222,18 +281,23 @@ class HomePages extends StatelessWidget {
                             borderRadius: BorderRadius.circular(20.0),
                             child: Stack(
                               children: [
-                                Image.asset('assets/images/Top 10 Health Benefits of Martial Arts.jpeg',width: 330, fit: BoxFit.fill),
+                                Image.asset('assets/images/back.jpg', width: 330, fit: BoxFit.fill),
                                 Positioned(
-                                  bottom: 8.0,
+                                  top: 68.0,
                                   left: 8.0,
                                   child: Text(
-                                    'Things To Know While Travelling Alone',
+                                    'Things To Know \n While Travelling Alone',
                                     style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: 16.0,
+                                      fontSize: 20.0,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
+                                ),
+                                Positioned(
+                                  right: 1.0,
+                                  bottom: 8.0,
+                                  child: Image.asset('assets/images/30cc0d8b6b74da55b4f343dd0a57bc8b-removebg-preview.png', width: 150, height: 150),
                                 ),
                               ],
                             ),
@@ -245,7 +309,34 @@ class HomePages extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 30,),
+          // Add this section above "Nearby Locations"
+
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "All Services",
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.w800),
+                ),
+                SizedBox(height: 10),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      _buildCategoryCard('Call',Colors.blue.shade200, Color(0xffFFB996), 'assets/images/abfd8a887e07a253f62ce1e546780ba4-removebg-preview.png'),
+                      _buildCategoryCard('Alert',Colors.red.shade200, Color(0xffFFB996), 'assets/images/alert.png'),
+                      _buildCategoryCard('Chat',Colors.orange.shade200, Color(0xffFFB996), 'assets/images/maps.png'),
+                      _buildCategoryCard('Others',Colors.green.shade300, Color(0xffFFB996), 'assets/images/e9b76cbacdb9907afea485da6860692b-removebg-preview.png'),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+      SizedBox(height: 5,),
             Padding(
                 padding:EdgeInsets.only(left: 20),
                 child: Text("Nearby Locations",style: TextStyle(fontSize: 25,fontWeight: FontWeight.w900),)),

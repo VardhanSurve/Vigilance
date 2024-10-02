@@ -47,11 +47,11 @@ class ProfilePagee extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                              Text(
-                               "Gaga",
+                               "Shobha Verma",
                                 style: TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
                               ),
                               Text(
-                                "gaga@gmail.com",
+                                "shobha231@gmail.com",
                                 style: TextStyle(fontWeight: FontWeight.w400),
                               ),
                             ],
@@ -79,7 +79,7 @@ class ProfilePagee extends StatelessWidget {
             Container(
               height: 700,
               decoration: BoxDecoration(
-                  color: Colors.grey.shade400,
+                  color: Color(0xffFFD6B9),
                   borderRadius: BorderRadius.only(topRight: Radius.circular(30),topLeft: Radius.circular(30))
               ),
               child: Padding(padding: EdgeInsets.all(24),

@@ -13,7 +13,7 @@ class OnboardingContents {
 List<OnboardingContents> contents = [
   OnboardingContents(
     title: "Collaborative Approach",
-    image: "assets/images/10d05a07e7a2d93351a1e18a6b65e756.jpg",
+    image: "assets/images/onbor.png",
     desc: "The community watch feature allows you to contribute to the safety of others",
   ),
   OnboardingContents(

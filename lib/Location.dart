@@ -277,51 +277,51 @@ class _LocationScreenState extends State<LocationScreen> {
                 ),
               ),
             ),
-          Positioned(
-            top: 30,
-            child: Container(
-              width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                color: Color(0xff37949d).withOpacity(0.6), // Adjust opacity as needed
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(20.0),
-                  bottomRight: Radius.circular(20.0),
-                ),
-                // Add blur effect
-                // backdropFilter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
-                // Add border
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    height: 80, // Custom height for the image container
-                    width: 80, // Custom width for the image container
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage("assets/images/logo.png"),
-                      ),
-                      shape: BoxShape.circle,
-                    ),
-                  ),
-                  SizedBox(width: 10), // Add some space between the image and text
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        "SAFE-ROUTES",
-                        style: TextStyle(
-                          fontSize: 32,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                      // Add more Text widgets if needed
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          )
+          // Positioned(
+          //   top: 30,
+          //   child: Container(
+          //     width: MediaQuery.of(context).size.width,
+          //     decoration: BoxDecoration(
+          //       color: Color(0xff37949d).withOpacity(0.6), // Adjust opacity as needed
+          //       borderRadius: BorderRadius.only(
+          //         bottomLeft: Radius.circular(20.0),
+          //         bottomRight: Radius.circular(20.0),
+          //       ),
+          //       // Add blur effect
+          //       // backdropFilter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
+          //       // Add border
+          //     ),
+          //     child: Row(
+          //       mainAxisAlignment: MainAxisAlignment.center,
+          //       children: [
+          //         Container(
+          //           height: 80, // Custom height for the image container
+          //           width: 80, // Custom width for the image container
+          //           decoration: BoxDecoration(
+          //             image: DecorationImage(
+          //               image: AssetImage("assets/images/logo.png"),
+          //             ),
+          //             shape: BoxShape.circle,
+          //           ),
+          //         ),
+          //         SizedBox(width: 10), // Add some space between the image and text
+          //         Column(
+          //           crossAxisAlignment: CrossAxisAlignment.center,
+          //           children: [
+          //             Text(
+          //               "SAFE-ROUTES",
+          //               style: TextStyle(
+          //                 fontSize: 32,
+          //                 fontWeight: FontWeight.w700,
+          //               ),
+          //             ),
+          //             // Add more Text widgets if needed
+          //           ],
+          //         ),
+          //       ],
+          //     ),
+          //   ),
+          // )
         ],
       ),
       floatingActionButton: Column(

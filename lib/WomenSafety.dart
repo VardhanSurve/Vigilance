@@ -27,9 +27,12 @@ class WomenSafety extends StatelessWidget {
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: [
-                    Color(0xff06535b),
-                    Color(0xff296a72),
-                    Color(0xffc3e4ec),
+                    // Color(0xff06535b),
+                    // Color(0xff296a72),
+                    // Color(0xffc3e4ec),
+                    Color(0xfffc976b),
+                    Color(0xffFFB996),
+                    Color(0xfffcd4c2),
                   ],
                 )),
             child: Padding(

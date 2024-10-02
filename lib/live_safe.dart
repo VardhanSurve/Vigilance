@@ -46,8 +46,8 @@ class _LiveSafeState extends State<LiveSafe> {
       shrinkWrap: true,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2, // Number of columns
-        crossAxisSpacing: 10.0, // Space between columns
-        mainAxisSpacing: 10.0, // Space between rows
+        crossAxisSpacing: 20.0, // Space between columns
+        mainAxisSpacing: 20.0, // Space between rows
         childAspectRatio: 1, // Aspect ratio for each item
       ),
       itemCount: emerIcon.length,
@@ -57,42 +57,57 @@ class _LiveSafeState extends State<LiveSafe> {
               LiveSafe.openMap(emerIcon[index]['onpress']!);
             },
             child: Container(
-              width: 60,
-              height: 60,
+              width: 50,
+              height: 50,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  begin: Alignment.topCenter,
+                  begin: Alignment.topRight,
                   end: Alignment.bottomRight,
                   colors: [
-                    Color(0xfff6b4bb),
-                    Color(0xff37949d),
+                    Color(0xffFFB996),
+                    Color(0xffFFB996),
+                    Color(0xfffdd8c6),
+                    Color(0xffF5F5F5),
                   ],
                 ),
                // color: Color(0xffC7ADFF),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.blueGrey,
-                    blurRadius: 4,
+                    color: Color(0xfffcbe94),
+                    blurRadius: 7,
                     blurStyle: BlurStyle.normal
                   )
                 ],
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(100),
               ),
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(20),
-                      child: Image(
-                        image: AssetImage(emerIcon[index]['icons']!),
-                        fit: BoxFit.cover,
-                        width:100,
-                      ),
+                    Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        // Container(
+                        //   width: 100,
+                        //   height: 100,
+                        //   decoration: BoxDecoration(
+                        //     color: Color(0xfffcbe94).withOpacity(0.3),
+                        //     shape: BoxShape.circle,
+                        //   ),
+                        // ),
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(20),
+                          child: Image(
+                            image: AssetImage(emerIcon[index]['icons']!),
+                            fit: BoxFit.cover,
+                            width:90,
+                          ),
+                        ),
+                      ],
                     ),
                     Text(emerIcon[index]['name']!,style: TextStyle(
-                      fontSize: 18,fontWeight: FontWeight.w500
+                      fontSize: 15,fontWeight: FontWeight.w500
                     ),)
                   ],
                 ),
